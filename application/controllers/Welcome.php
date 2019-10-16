@@ -2,24 +2,36 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	function __construct() {
+		parent::__construct();
+		$this->load->helper('url');
+		$this->load->library('Utilerias');
+		$this->load->model('Login_Model');
+		
+	}
+	
 	public function index()
 	{
 		$this->load->view('welcome_message');
+	}
+
+	public function login()
+	{
+		$usuario = $this->input->post('usuario');
+		$pass = $this->input->post('pass');
+
+		$acceso = $this->Login_Model->iniciar_sesion($usuario, $pass);
+		if (empty($acceso)) {
+			$msj = 'Datos incorrectos';
+			$str_view = '';
+		}else{
+			$msj = '';
+			$data['datos'] = $acceso;
+			$str_view = $this->load->view("tickets/index", $data, TRUE);
+		}
+		//Utilerias::imprimeConsola($msj);
+		$response = array('datos' => $msj, 'str_view' => $str_view);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
 	}
 }
