@@ -9,7 +9,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-
+	<nav>
+		<div class="nav-wrapper light-green">
+			<a href="#" class="brand-logo right">Tickets - Sarape</a>
+		</div>
+	</nav>
+	
 	<div class="row" id="login">
 		<div class="col s12 offset-s4">
 			<div class="input-fields col s6">
@@ -24,6 +29,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col s12" id="index_div"></div>
+	</div>
+	
 	<script >var base_url = "<?= base_url();?>index.php/"</script>
 	<script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/materialize.js'); ?>"></script>

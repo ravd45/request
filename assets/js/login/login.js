@@ -10,8 +10,12 @@ $('#btn_iniciar').click(function() {
 
 	})
 	.done(function(data) {
-		console.info(data);
-		$('#msj').html(data.datos);
+		if (data.datos != '') {
+			$('#msj').html(data.datos);
+		}else{
+			$('#login').attr('hidden', 'true');
+			$('#index_div').html(data.str_view);
+		}
 	})
 	.fail(function() {
 		console.log("error");
