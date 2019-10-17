@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('Utilerias');
 		$this->load->model('Login_Model');
+		$this->load->model('Ticket_model');
 		
 	}
 	
@@ -25,12 +26,15 @@ class Welcome extends CI_Controller {
 			$msj = 'Datos incorrectos';
 			$str_view = '';
 		}else{
+			$tabla = $this->Ticket_model->get_tickets();
 			$msj = '';
-			$data['datos'] = $acceso;
+			$data['datos_usuario'] = $acceso;
+			$data['tabla'] = $tabla;
 			$str_view = $this->load->view("tickets/index", $data, TRUE);
+		 
 		}
-		//Utilerias::imprimeConsola($msj);
-		$response = array('datos' => $msj, 'str_view' => $str_view);
+		// Utilerias::imprimeConsola($tabla);
+		$response = array('datos' => $msj, 'str_view' => $str_view, 'tabla'=>$tabla);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}

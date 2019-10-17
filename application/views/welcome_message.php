@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<span style="color:red;" id="msj"></span>
 			</div>
 			<div class="col s12 offset-s6">
-				<a id="btn_iniciar" class="btn-floating"><i class="material-icons">done</i></a>
+				<a id="btn_iniciar" class="btn-floating amber darken-2"><i class="material-icons">done</i></a>
 			</div>
 		</div>
 	</div>
