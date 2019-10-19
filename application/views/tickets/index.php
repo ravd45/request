@@ -2,8 +2,6 @@
 	<div class="row">
 		<div class="input-field">
 			<input type="text" hidden id="idusuario" value="<?=$datos_usuario[0]['idusuario']?>">
-			<input type="text" hidden value="<?=$datos_usuario[0]['nombre']?>">
-			<input type="text" hidden value="<?=$datos_usuario[0]['puesto']?>">
 		</div>
 		<div class="col s12">
 			<div class="col s4 input-field ">
@@ -54,18 +52,18 @@
 							<td colspan="7">No hay datos para mostrar</td>
 						</tr>
 					<?php } else { ?>
-					<?php $i = 0; foreach ($tabla as $key => $value) { $i++;?>
-						<tr>
-							<td><?=$i?></td>
-							<td><?=$value['solicitante']?></td>
-							<td><?=$value['detalle']?></td>
-							<td><?=$value['nombre']?></td>
-							<td><?=$value['fechaPeticion']?></td>
-							<td><?=$value['estado']?></td>
-							<td><a id="btn_detalles" class="btn-floating amber darken-2"><i class="material-icons">list</i></a></td>
-						</tr>
-					<?php }
-					     }?>
+						<?php $i = 0; foreach ($tabla as $key => $value) { $i++;?>
+							<tr>
+								<td><?=$i?></td>
+								<td><?=$value['solicitante']?></td>
+								<td><?=$value['detalle']?></td>
+								<td><?=$value['nombre']?></td>
+								<td><?=$value['fechaPeticion']?></td>
+								<td><?=$value['estado']?></td>
+								<td><a id="btn_detalles" class="btn-floating amber darken-2"><i class="material-icons">list</i></a></td>
+							</tr>
+						<?php }
+					}?>
 				</tbody>
 
 			</table>
