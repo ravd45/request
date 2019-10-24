@@ -2,6 +2,7 @@
  	$('.sidenav').sidenav();
  	$('select').formSelect();
  	$('input#input_text, textarea#textarea2').characterCounter();
+ 	$('.modal').modal();
  });
  
  $('#btn_enviar').click(function() {
@@ -28,3 +29,30 @@
     });
     
  });
+
+
+
+ function detalles(idticket) {
+ 	ruta = base_url + 'Welcome/get_detalles';
+ 	$.ajax({
+ 		url: ruta,
+ 		type: 'POST',
+        dataType: 'json',
+ 		data: {idticket: idticket},
+ 	})
+ 	.done(function(data) {
+ 		$('#detalles_div').html(data.str_view);
+ 		$('#idticketInput').val(idticket);
+ 	})
+ 	.fail(function() {
+ 		console.log("error");
+ 	})
+ 	.always(function() {
+ 		console.log("complete");
+ 	});
+ 	
+ }
+
+ function observacion(ticket) {
+ 	console.log(ticket);
+ }

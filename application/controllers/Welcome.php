@@ -37,7 +37,7 @@ class Welcome extends CI_Controller {
 
 	public function get_tabla($acceso)
 	{
-		$tabla = $this->Ticket_model->get_tickets();
+		$tabla = $this->Ticket_model->get_tickets(0);
 		$msj = '';
 		$data['datos_usuario'] = $acceso;
 		$data['tabla'] = $tabla;
@@ -67,5 +67,52 @@ class Welcome extends CI_Controller {
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 
+	}
+
+	public function get_detalles()
+	{
+		$idticket = $this->input->post('idticket');
+		$tabla = $this->Ticket_model->get_tickets($idticket);
+		$observaciones = $this->Ticket_model->get_observacion($idticket);
+		$data['tabla'] = $tabla;
+		$data['observaciones'] = $observaciones;
+		$str_view = $this->load->view("tickets/modal_detalles", $data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function set_observacion()
+	{
+		$idticket = $this->input->post('id');
+		$idusuario = $this->input->post('idusuario');
+		$observacion = $this->input->post('observacion');
+		$fechaPeticion = date("Y-m-d H:i:s");  
+		$grabar_observacion = $this->Ticket_model->grabar_observacion($idticket, $observacion, $fechaPeticion,$idusuario);
+
+		$tabla = $this->Ticket_model->get_tickets($idticket);
+		$observaciones = $this->Ticket_model->get_observacion($idticket);
+		$data['tabla'] = $tabla;
+		$data['observaciones'] = $observaciones;
+		$str_view = $this->load->view("tickets/modal_detalles", $data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function set_proceso()
+	{
+		$estado = $this->input->post('estado');
+		$idticket = $this->input->post('id');
+		$fecha = date("Y-m-d H:i:s");  
+		$actualizarEstado = $this->Ticket_model->actualizar_estado($estado, $idticket,$fecha);
+
+		$tabla = $this->Ticket_model->get_tickets($idticket);
+		$observaciones = $this->Ticket_model->get_observacion($idticket);
+		$data['tabla'] = $tabla;
+		$data['observaciones'] = $observaciones;
+		$str_view = $this->load->view("tickets/modal_detalles", $data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200, $response, $this);
 	}
 }

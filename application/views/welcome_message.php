@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 	<nav>
 		<div class="nav-wrapper light-green">
-			<a href="#" class="brand-logo right">Tickets - Sarape</a>
+			<a href="#" class="brand-logo right">Tickets - QualEdu</a>
 		</div>
 	</nav>
 	

@@ -1,4 +1,4 @@
-	<?php //Utilerias::imprimeConsola($datos_usuario); ?>
+		<?php //Utilerias::imprimeConsola($datos_usuario); ?>
 	<div class="row">
 		<div class="input-field">
 			<input type="text" hidden id="idusuario" value="<?=$datos_usuario[0]['idusuario']?>">
@@ -59,8 +59,20 @@
 								<td><?=$value['detalle']?></td>
 								<td><?=$value['nombre']?></td>
 								<td><?=$value['fechaPeticion']?></td>
-								<td><?=$value['estado']?></td>
-								<td><a id="btn_detalles" class="btn-floating amber darken-2"><i class="material-icons">list</i></a></td>
+								<td>
+									<?php switch ($value['estado']) {
+										case '0': ?>
+											<i class="material-icons red-text">star_border</i>
+										<?php break;
+										case '1': ?>
+											<i class="material-icons yellow-text">star_half</i>
+										<?php break;
+										case '2': ?>
+											<i class="material-icons green-text">star</i>
+										<?php break;
+									} ?>
+								</td>
+								<td><a id="btn_detalles" onclick="detalles(<?= $value['idticket']?>)" class="btn-floating amber darken-2 modal-trigger" href="#detalles_modal"><i class="material-icons">list</i></a></td>
 							</tr>
 						<?php }
 					}?>
@@ -69,4 +81,16 @@
 			</table>
 		</div>
 	</div>	
+
+  <!-- Modal Structure -->
+  <div id="detalles_modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Detalles</h4>
+      <div id="detalles_div"></div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+  </div>
+          
 	<script src="<?= base_url('assets/js/index/index.js'); ?>"></script>
