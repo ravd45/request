@@ -43,6 +43,7 @@ class Ticket_model extends CI_Model
   public function get_observacion($idticket)
   {
   	$str_query = "SELECT 
+  	u.idusuario,
   	CONCAT(u.nombre, ' ', u.paterno, ' ', u.materno) AS observador,
   	o.observacion,
   	o.fecha
@@ -90,4 +91,10 @@ class Ticket_model extends CI_Model
   		return true;
   	}
   }//actualizar_estado
+
+  public function get_usuarios()
+  {
+  	$str_query = "SELECT * FROM usuario";
+  		return $this->db->query($str_query)->result_array();
+  }//get_usuarios
 } //Class {}

@@ -30,7 +30,27 @@
     
  });
 
+ $('#desarrollador').change(function() {
+ 	desarrollador = $('#desarrollador option:selected').val();
 
+ 	ruta = base_url + 'Welcome/get_proyectos';
+ 	$.ajax({
+ 		url: ruta,
+ 		type: 'POST',
+ 		dataType: 'json',
+ 		data: {id:desarrollador},
+ 	})
+ 	.done(function() {
+ 		console.log("success");
+ 	})
+ 	.fail(function() {
+ 		console.log("error");
+ 	})
+ 	.always(function() {
+ 		console.log("complete");
+ 	});
+ 	
+ });
 
  function detalles(idticket) {
  	ruta = base_url + 'Welcome/get_detalles';

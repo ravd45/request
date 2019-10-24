@@ -37,9 +37,12 @@ class Welcome extends CI_Controller {
 
 	public function get_tabla($acceso)
 	{
+		$usuarios = $this->Ticket_model->get_usuarios();
+		// echo "<pre>"; print_r($usuarios); die();
 		$tabla = $this->Ticket_model->get_tickets(0);
 		$msj = '';
 		$data['datos_usuario'] = $acceso;
+		$data['usuarios'] = $usuarios;
 		$data['tabla'] = $tabla;
 		$str_view = $this->load->view("tickets/index", $data, TRUE);
 

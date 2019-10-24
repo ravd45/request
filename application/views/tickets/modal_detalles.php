@@ -21,13 +21,13 @@
                             <td>
                                 <?php switch ($value['estado']) {
                                     case '0': ?>
-                                    <a class="btn-floating white" onclick="cambiarestado(1)"><i class="material-icons red-text">star_border</i></a>
+                                    <?php if($value['idusuario']==) ?><a class="btn-floating white" onclick="cambiarestado(1)"><?php } ?><i class="material-icons red-text">star_border</i></a>
                                     <?php break;
                                     case '1': ?>
-                                    <a class="btn-floating white" onclick="cambiarestado(2)"><i class="material-icons yellow-text">star_half</i></a>
+                                    <?php if($value['idusuario']==) ?><a class="btn-floating white" onclick="cambiarestado(2)"><?php } ?><i class="material-icons yellow-text">star_half</i></a>
                                     <?php break;
                                     case '2': ?>
-                                    <a class="btn-floating white" onclick="cambiarestado(0)"><i class="material-icons green-text">star</i></a>
+                                    <?php if($value['idusuario']==) ?><a class="btn-floating white" onclick="cambiarestado(0)"><?php } ?><i class="material-icons green-text">star</i></a>
                                     <?php break;
                                 } ?>
                             </td>

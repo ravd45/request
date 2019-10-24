@@ -4,19 +4,27 @@
 			<input type="text" hidden id="idusuario" value="<?=$datos_usuario[0]['idusuario']?>">
 		</div>
 		<div class="col s12">
-			<div class="col s4 input-field ">
+			<div class="col s3 input-field ">
 				<select id="desarrollador">
 					<option value="0" selected disabled>Seleccione un desarrollador</option>
-					<option value="2">Alejandro Martínez</option>
-					<option value="1">Aracely Velázquez</option>
-					<option value="3">Eloisa Hidalgo</option>
+					<?php foreach ($usuarios as $key => $values) { ?>
+					<option value="<?= $values['idusuario']?>"><?=$values['nombre']?> <?=$values['paterno']?> <?=$values['materno']?></option>
+					<?php } ?>
+				</select>
+			</div>
+			<div class="col s3 input-field ">
+				<select id="proyecto" >
+					<option value="0" selected disabled>Seleccione un proyecto</option>
+					<?php foreach ($proyectos as $key => $proyecto) { ?>
+					<option value="<?= $proyecto['idproyecto']?>"><?=$proyecto['proyecto']?></option>
+					<?php } ?>
 				</select>
 			</div>
 			<div class="col s6 input-field">
 				<textarea id="ticket" class="materialize-textarea" data-length="1500"></textarea>
 				<label for="ticket">Solicitud</label>
 			</div>
-			<div class="col s2 input-field">
+			<!-- <div class="col s2 input-field">
 				<form action="#">
 					<div class="file-field input-field">
 						<div class="btn amber darken-2">
@@ -28,9 +36,9 @@
 						</div>
 					</div>
 				</form>
-			</div>
+			</div> -->
 		</div>
-		<div class="col s12 offset-s11">
+		<div class="col s1 offset-s11">
 			<a id="btn_enviar" class="btn-floating amber darken-2"><i class="material-icons">save</i></a>
 		</div>
 		<div class="col s12 input-field">

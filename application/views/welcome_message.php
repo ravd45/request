@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</nav>
 	
 	<div class="row" id="login">
-		<div class="col s12 offset-s4">
+		<div class="col s8 offset-s4">
 			<div class="input-fields col s6">
 				<label for="user">Usuario</label>
 				<input  id="user" type="text" class="validate">
@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<input  id="pass" type="password" class="validate">
 				<span style="color:red;" id="msj"></span>
 			</div>
-			<div class="col s12 offset-s6">
+			<div class="col s2 offset-s6">
 				<a id="btn_iniciar" class="btn-floating amber darken-2"><i class="material-icons">done</i></a>
 			</div>
 		</div>

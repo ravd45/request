@@ -39,8 +39,8 @@
         $('#detalles_div').html(data.str_view);
         $('#idticketInput').val(id);
      })
-     .fail(function() {
-         console.log("error");
+     .fail(function(data) {
+         console.log(data);
      })
      .always(function() {
          console.log("complete");
