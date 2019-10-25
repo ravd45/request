@@ -7,6 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>Tickets</title>
 	<link rel="stylesheet" href="<?= base_url('assets/css/materialize.css'); ?>">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="<?= base_url('assets/js/messages.js') ?>"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 </head>
 <body>
 	<nav>

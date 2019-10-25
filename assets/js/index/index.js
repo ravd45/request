@@ -40,14 +40,15 @@
  		dataType: 'json',
  		data: {id:desarrollador},
  	})
- 	.done(function() {
- 		console.log("success");
+ 	.done(function(data) {
+ 		console.log(data.select);
+ 		$('#proyecto').addClass('col s3 input-field');
+ 		$('#proyecto').html(data.select);
  	})
- 	.fail(function() {
- 		console.log("error");
+ 	.fail(function(data) {
+ 		console.log(data);
  	})
  	.always(function() {
- 		console.log("complete");
  	});
  	
  });
@@ -59,6 +60,9 @@
  		type: 'POST',
         dataType: 'json',
  		data: {idticket: idticket},
+ 		 // beforeSend: function(xhr) {
+    //             Notification.loading("");
+    //         },
  	})
  	.done(function(data) {
  		$('#detalles_div').html(data.str_view);
@@ -71,8 +75,4 @@
  		console.log("complete");
  	});
  	
- }
-
- function observacion(ticket) {
- 	console.log(ticket);
  }

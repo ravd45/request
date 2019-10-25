@@ -1,4 +1,6 @@
-		<?php //Utilerias::imprimeConsola($datos_usuario); ?>
+<div class="col s12 ">
+	<a class="light-green-text right flow-text"><?=$datos_usuario[0]['nombre']?> <?=$datos_usuario[0]['paterno']?> <?=$datos_usuario[0]['materno']?></a>
+</div>
 	<div class="row">
 		<div class="input-field">
 			<input type="text" hidden id="idusuario" value="<?=$datos_usuario[0]['idusuario']?>">
@@ -12,14 +14,7 @@
 					<?php } ?>
 				</select>
 			</div>
-			<div class="col s3 input-field ">
-				<select id="proyecto" >
-					<option value="0" selected disabled>Seleccione un proyecto</option>
-					<?php foreach ($proyectos as $key => $proyecto) { ?>
-					<option value="<?= $proyecto['idproyecto']?>"><?=$proyecto['proyecto']?></option>
-					<?php } ?>
-				</select>
-			</div>
+			<div class="" id="proyecto"></div>
 			<div class="col s6 input-field">
 				<textarea id="ticket" class="materialize-textarea" data-length="1500"></textarea>
 				<label for="ticket">Solicitud</label>

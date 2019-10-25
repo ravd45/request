@@ -21,13 +21,13 @@
                             <td>
                                 <?php switch ($value['estado']) {
                                     case '0': ?>
-                                    <?php if($value['idusuario']==) ?><a class="btn-floating white" onclick="cambiarestado(1)"><?php } ?><i class="material-icons red-text">star_border</i></a>
+                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn-floating white" onclick="cambiarestado(1)"><?php } ?><i class="material-icons red-text">star_border</i></a>
                                     <?php break;
                                     case '1': ?>
-                                    <?php if($value['idusuario']==) ?><a class="btn-floating white" onclick="cambiarestado(2)"><?php } ?><i class="material-icons yellow-text">star_half</i></a>
+                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn-floating white" onclick="cambiarestado(2)"><?php } ?><i class="material-icons yellow-text">star_half</i></a>
                                     <?php break;
                                     case '2': ?>
-                                    <?php if($value['idusuario']==) ?><a class="btn-floating white" onclick="cambiarestado(0)"><?php } ?><i class="material-icons green-text">star</i></a>
+                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn-floating white" onclick="cambiarestado(0)"><?php } ?><i class="material-icons green-text">star</i></a>
                                     <?php break;
                                 } ?>
                             </td>
@@ -35,7 +35,7 @@
                     <?php } ?>
                 </tbody>
             </table>
-            <div class="col s10 offset-s3">
+            <div class="col s8 offset-s4">
                 <div class="col s6">
                     <label for="observacion">Observación
                        <input type="text" id="observacion"></label>

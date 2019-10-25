@@ -9,7 +9,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('Login_Model');
 		$this->load->model('Ticket_model');
 		date_default_timezone_set('America/Mexico_City');
-		
+		session_start();
 	}
 	
 	public function index()
@@ -36,16 +36,17 @@ class Welcome extends CI_Controller {
 	}//login
 
 	public function get_tabla($acceso)
-	{
+	{	
+		
 		$usuarios = $this->Ticket_model->get_usuarios();
-		// echo "<pre>"; print_r($usuarios); die();
+		$_SESSION['id'] = $acceso[0]['idusuario'];
 		$tabla = $this->Ticket_model->get_tickets(0);
 		$msj = '';
 		$data['datos_usuario'] = $acceso;
 		$data['usuarios'] = $usuarios;
 		$data['tabla'] = $tabla;
 		$str_view = $this->load->view("tickets/index", $data, TRUE);
-
+		// Utilerias::imprimeConsola($_SESSION['id']);
 		$response = array('datos' => $msj, 'str_view' => $str_view, 'tabla'=>$tabla);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
@@ -59,7 +60,8 @@ class Welcome extends CI_Controller {
 		$solicitante = $this->input->post('solicitante');
 		$ruta_anexo = 'nada aún jejeje';
 		$fechaPeticion = date("Y-m-d H:i:s");  
-		$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, $fechaPeticion, $ruta_anexo);
+		//$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, $idproyecto, $otro_proyecto, $fechaPeticion, $ruta_anexo);
+		$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, 1, '', $fechaPeticion, $ruta_anexo);
 		// Utilerias::imprimeConsola($llenaTabla);
 		$datos[0] = ['idusuario' => $solicitante];
 		$data['datos_usuario'] = $datos;
@@ -117,5 +119,25 @@ class Welcome extends CI_Controller {
 		$str_view = $this->load->view("tickets/modal_detalles", $data, TRUE);
 		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
+	public function get_proyectos()
+	{
+		$id = $this->input->post('id');
+
+		$proyectos = $this->Ticket_model->get_proyectos($id);
+
+		$select = '<select id="proyecto" >
+					<option value="0" selected disabled>Seleccione un proyecto</option>';
+
+		foreach ($proyectos as $key => $value) {
+			$select .= "<option value='{$value['idproyecto']}'>{$value['proyecto']}</option>";
+		}
+		$select .= '</select>';
+		$response = array('select' => $select);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+
 	}
 }

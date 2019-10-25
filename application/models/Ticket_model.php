@@ -16,16 +16,17 @@ class Ticket_model extends CI_Model
   	}
 
   	$str_query = "SELECT 
-  	t.idticket, t.solicitante, t.detalle, a.nombre, t.fechaPeticion, t.fechaInicio,  t.fechaTermino, t.estado
+  	t.idticket, t.solicitante, t.detalle, a.nombre, t.fechaPeticion, t.fechaInicio,  t.fechaTermino, t.estado, a.idusuario, t.tipo_usuario
   	FROM
   	(SELECT 
-  	concat(u.nombre,' ', u.paterno,' ', u.materno) as solicitante, t.detalle, t.fechaPeticion,t.fechaInicio,  t.fechaTermino, t.estado, t.idticket
+  	concat(u.nombre,' ', u.paterno,' ', u.materno) as solicitante, s.tipo_usuario, t.detalle, t.fechaPeticion,t.fechaInicio,  t.fechaTermino, t.estado, t.idticket
   	FROM
   	ticket t
-  	INNER JOIN usuario u ON u.idusuario = t.solicitante) AS t
+  	INNER JOIN usuario u ON u.idusuario = t.solicitante
+  	INNER JOIN seguridad s on s.idusuario = u.idusuario) AS t
   	INNER JOIN
   	(SELECT 
-  	a.idasignacion,  concat(u.nombre,' ', u.paterno,' ', u.materno) as nombre, a.idticket
+  	a.idasignacion,  concat(u.nombre,' ', u.paterno,' ', u.materno) as nombre, a.idticket, u.idusuario
   	FROM
   	asignacion a
   	INNER JOIN usuario u ON a.idusuario = u.idusuario) AS a ON t.idticket = a.idticket
@@ -34,9 +35,9 @@ class Ticket_model extends CI_Model
   	return $this->db->query($str_query)->result_array();
   }//get_tickets()
 
-  public function set_tabla($solicitante, $detalle, $desarrollador, $fechaPeticion, $ruta_anexo)
+  public function set_tabla($solicitante, $detalle, $desarrollador, $idproyecto, $otro_proyecto, $fechaPeticion, $ruta_anexo)
   {
-  	$str_query = "call proye7nb_tickets.set_tabla({$solicitante}, '{$detalle}', {$desarrollador}, '{$fechaPeticion}', '{$ruta_anexo}')";
+  	$str_query = "call proye7nb_tickets.set_tabla({$solicitante}, '{$detalle}', {$desarrollador},  {$idproyecto}, '{$otro_proyecto}', '{$fechaPeticion}', '{$ruta_anexo}')";
   	return $this->db->query($str_query)->result_array();
   }// set_tabla()
 
@@ -97,4 +98,14 @@ class Ticket_model extends CI_Model
   	$str_query = "SELECT * FROM usuario";
   		return $this->db->query($str_query)->result_array();
   }//get_usuarios
+
+  public function get_proyectos($id)
+  {
+  	$str_query = "SELECT u.idusuario, pu.idproyecto, cp.proyecto FROM proyecto_usuario pu
+  	INNER JOIN c_proyecto cp on cp.idc_proyecto = pu.idproyecto
+  	LEFT JOIN usuario u on u.idusuario = pu.idusuario
+  	WHERE u.idusuario = {$id}";
+
+  	return $this->db->query($str_query)->result_array();
+  }//get_proyectos
 } //Class {}
