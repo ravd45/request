@@ -28,13 +28,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<span style="color:red;" id="msj"></span>
 			</div>
 			<div class="col s2 offset-s6">
-				<a id="btn_iniciar" class="btn-floating amber darken-2"><i class="material-icons">done</i></a>
+				<a id="btn_iniciar" class="btn-floating amber darken-2 btn tooltipped" data-position="bottom" data-tooltip="Iniciar Sesión" title="Iniciar Sesión"><i class="material-icons">done</i></a>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col s12" id="index_div"></div>
 	</div>
+
+	  <footer class="page-footer  light-green">
+          <div class="footer-copyright">
+            <div class="container">
+            © 2019 Copyright QualEdu
+            <a class="grey-text text-lighten-4 right" href="www.qual-edu.org">Qual-Edu</a>
+            </div>
+          </div>
+        </footer>
+            
 	
 	<script >var base_url = "<?= base_url();?>index.php/"</script>
 	<script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>

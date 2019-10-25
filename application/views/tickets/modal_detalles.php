@@ -21,13 +21,13 @@
                             <td>
                                 <?php switch ($value['estado']) {
                                     case '0': ?>
-                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn-floating white" onclick="cambiarestado(1)"><?php } ?><i class="material-icons red-text">star_border</i></a>
+                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn-floating white" title="Actualizar estado" onclick="cambiarestado(1)"><?php } ?><i class="material-icons red-text">star_border</i></a>
                                     <?php break;
                                     case '1': ?>
-                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn-floating white" onclick="cambiarestado(2)"><?php } ?><i class="material-icons yellow-text">star_half</i></a>
+                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn-floating white" title="Actualizar estado" onclick="cambiarestado(2)"><?php } ?><i class="material-icons yellow-text">star_half</i></a>
                                     <?php break;
                                     case '2': ?>
-                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn-floating white" onclick="cambiarestado(0)"><?php } ?><i class="material-icons green-text">star</i></a>
+                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn-floating white" title="Actualizar estado" onclick="cambiarestado(0)"><?php } ?><i class="material-icons green-text">star</i></a>
                                     <?php break;
                                 } ?>
                             </td>
@@ -43,7 +43,7 @@
                        <input type="text" id="idticketInput" hidden>
                    </div>
                    <div class="col s6">
-                       <a id="btn_observacion" class="btn-floating amber darken-2"><i class="material-icons">edit</i></a>
+                       <a id="btn_observacion" class="btn-floating amber darken-2" title="Guardar observación"><i class="material-icons">edit</i></a>
                    </div>
                </div>
                <table class="centered striped">

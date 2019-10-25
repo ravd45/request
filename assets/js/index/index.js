@@ -3,6 +3,7 @@
  	$('select').formSelect();
  	$('input#input_text, textarea#textarea2').characterCounter();
  	$('.modal').modal();
+ 	$('.tooltipped').tooltip();
  });
  
  $('#btn_enviar').click(function() {
@@ -11,7 +12,6 @@
     detalle = $('#ticket').val();
     solicitante = $('#idusuario').val();
     ruta = base_url + 'Welcome/set_tabla';
-       console.log('click click');
     $.ajax({
         url: ruta,
         type: 'POST',
@@ -41,7 +41,6 @@
  		data: {id:desarrollador},
  	})
  	.done(function(data) {
- 		console.log(data.select);
  		$('#proyecto').addClass('col s3 input-field');
  		$('#proyecto').html(data.select);
  	})
@@ -51,6 +50,10 @@
  	.always(function() {
  	});
  	
+ });
+
+ $('#btn_cerrar').click(function() {
+ 	location.reload();
  });
 
  function detalles(idticket) {

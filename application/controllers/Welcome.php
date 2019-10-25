@@ -29,6 +29,7 @@ class Welcome extends CI_Controller {
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}else{
+			$_SESSION['acceso'] = $acceso;
 			$this->get_tabla($acceso);
 		}
 		// Utilerias::imprimeConsola($tabla);
@@ -40,6 +41,7 @@ class Welcome extends CI_Controller {
 		
 		$usuarios = $this->Ticket_model->get_usuarios();
 		$_SESSION['id'] = $acceso[0]['idusuario'];
+		$_SESSION['nombre'] =  $acceso[0]['nombre'].' '. $acceso[0]['paterno'].' '. $acceso[0]['materno'];
 		$tabla = $this->Ticket_model->get_tickets(0);
 		$msj = '';
 		$data['datos_usuario'] = $acceso;
@@ -61,11 +63,15 @@ class Welcome extends CI_Controller {
 		$ruta_anexo = 'nada aún jejeje';
 		$fechaPeticion = date("Y-m-d H:i:s");  
 		//$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, $idproyecto, $otro_proyecto, $fechaPeticion, $ruta_anexo);
+		$usuarios = $this->Ticket_model->get_usuarios();
 		$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, 1, '', $fechaPeticion, $ruta_anexo);
+		//$this->get_tabla($_SESSION['acceso']);
 		// Utilerias::imprimeConsola($llenaTabla);
 		$datos[0] = ['idusuario' => $solicitante];
 		$data['datos_usuario'] = $datos;
+		$data['usuarios'] = $usuarios;
 		$data['tabla'] = $llenaTabla;
+		//$data['tabla'] = $tabla;
 		$str_view = $this->load->view("tickets/index", $data, TRUE);
 
 		$response = array('str_view' => $str_view, 'tabla'=>$llenaTabla);

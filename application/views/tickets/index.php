@@ -1,5 +1,7 @@
 <div class="col s12 ">
-	<a class="light-green-text right flow-text"><?=$datos_usuario[0]['nombre']?> <?=$datos_usuario[0]['paterno']?> <?=$datos_usuario[0]['materno']?></a>
+
+	<a class="light-green-text right flow-text"><?= $_SESSION['nombre']?></a>
+	<a id="btn_cerrar" class="btn-floating amber darken-2 tooltipped" data-position="bottom" data-tooltip="Cerrar Sesión" title="Cerrar Sesión"><i class="material-icons">cancel</i></a>
 </div>
 	<div class="row">
 		<div class="input-field">
@@ -34,7 +36,7 @@
 			</div> -->
 		</div>
 		<div class="col s1 offset-s11">
-			<a id="btn_enviar" class="btn-floating amber darken-2"><i class="material-icons">save</i></a>
+			<a id="btn_enviar" class="btn-floating amber darken-2 tooltipped" data-position="bottom" data-tooltip="Guardar" title="Guardar"><i class="material-icons">save</i></a>
 		</div>
 		<div class="col s12 input-field">
 			<table class="centered responsive-table">
@@ -65,17 +67,17 @@
 								<td>
 									<?php switch ($value['estado']) {
 										case '0': ?>
-											<i class="material-icons red-text">star_border</i>
+											<i class="material-icons red-text tooltipped" data-position="bottom" data-tooltip="Sin iniciar">star_border</i>
 										<?php break;
 										case '1': ?>
-											<i class="material-icons yellow-text">star_half</i>
+											<i class="material-icons yellow-text tooltipped" data-position="bottom" data-tooltip="En proceso">star_half</i>
 										<?php break;
 										case '2': ?>
-											<i class="material-icons green-text">star</i>
+											<i class="material-icons green-text tooltipped" data-position="bottom" data-tooltip="Terminado">star</i>
 										<?php break;
 									} ?>
 								</td>
-								<td><a id="btn_detalles" onclick="detalles(<?= $value['idticket']?>)" class="btn-floating amber darken-2 modal-trigger" href="#detalles_modal"><i class="material-icons">list</i></a></td>
+								<td><a id="btn_detalles" onclick="detalles(<?= $value['idticket']?>)" class="btn-floating amber darken-2 modal-trigger tooltipped" data-position="right" data-tooltip="Ver detalles"  title="Ver detalles" href="#detalles_modal"><i class="material-icons">list</i></a></td>
 							</tr>
 						<?php }
 					}?>
