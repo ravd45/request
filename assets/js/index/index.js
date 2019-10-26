@@ -1,11 +1,3 @@
- $(document).ready(function(){
- 	$('.sidenav').sidenav();
- 	$('select').formSelect();
- 	$('input#input_text, textarea#textarea2').characterCounter();
- 	$('.modal').modal();
- 	$('.tooltipped').tooltip();
- });
- 
  $('#btn_enviar').click(function() {
  
     desarrollador = $('#desarrollador option:selected').val();
@@ -70,6 +62,7 @@
  	.done(function(data) {
  		$('#detalles_div').html(data.str_view);
  		$('#idticketInput').val(idticket);
+        $('#detalles_modal').modal('show');
  	})
  	.fail(function() {
  		console.log("error");

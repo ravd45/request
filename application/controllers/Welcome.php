@@ -134,13 +134,11 @@ class Welcome extends CI_Controller {
 
 		$proyectos = $this->Ticket_model->get_proyectos($id);
 
-		$select = '<select id="proyecto" >
-					<option value="0" selected disabled>Seleccione un proyecto</option>';
+		$select = '';
 
 		foreach ($proyectos as $key => $value) {
 			$select .= "<option value='{$value['idproyecto']}'>{$value['proyecto']}</option>";
 		}
-		$select .= '</select>';
 		$response = array('select' => $select);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;

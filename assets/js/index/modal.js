@@ -26,6 +26,10 @@
     }
 });
 
+$('#cerrar_modal').click(function() {
+    $('#detalles_modal').modal('hide');
+})
+
  function cambiarestado(estado) {
     id = $('#idticketInput').val();
     ruta = base_url + 'Welcome/set_proceso';
