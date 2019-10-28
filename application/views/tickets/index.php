@@ -80,7 +80,7 @@
 												<?php break;
 											} ?>
 										</td>
-										<td><a id="btn_detalles" onclick="detalles(<?= $value['idticket']?>)" class="btn-floating amber darken-2 modal-trigger tooltipped" data-position="right" data-tooltip="Ver detalles"  title="Ver detalles" href="#detalles_modal"><i class="material-icons">list</i></a></td>
+										<td><a id="btn_detalles" onclick="detalles(<?= $value['idticket']?>)" class="btn btn-sm btn-secondary modal-trigger tooltipped" data-position="right" data-tooltip="Ver detalles"  title="Ver detalles" href="#detalles_modal"><i class="material-icons">list</i></a></td>
 									</tr>
 								<?php }
 							}?>
