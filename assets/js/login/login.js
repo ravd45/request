@@ -2,7 +2,6 @@ $('#btn_iniciar').click(function() {
 	usuario = $('#user').val();
 	pass = $('#pass').val();
 	ruta = base_url + 'Welcome/login';
-	var nombre = "<?= $_SESSION['nombre']; ?>";
 	$.ajax({
 		url: ruta,
 		type: 'POST',
@@ -19,7 +18,7 @@ $('#btn_iniciar').click(function() {
 			$('#btn_cerrar').html('Cerrar Sesión');
 			$('#nombre_usuario').removeClass('text-info');
 			$('#nombre_usuario').addClass('text-white');
-			$('#nombre_usuario').html(nombre);
+			$('#nombre_usuario').removeClass('d-none');
 		}
 	})
 	.fail(function() {

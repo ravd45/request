@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<nav class="nav bg-info justify-content-center">
 		<a class="nav-link active text-white" href="#">Tickets Qual-Edu</a>
 		<a class="nav-link active" href="#"></a>
-		<a class="nav-link text-info" href="#" id="nombre_usuario"></a>
+		<a class="nav-link text-info d-none" href="#" id="nombre_usuario"><?=$_SESSION['nombre']?></a>
 		<a class="nav-link text-white" href="#" id="btn_cerrar"></a>
 	</nav>
 	<br><br>
@@ -47,11 +47,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-sm-12" id="index_div"></div>
 		</div>
 
-		<footer class="page-footer  light-green">
+		<footer class="page-footer bg-info">
 			<div class="footer-copyright">
-				<div class="container">
+				<div class="container text-white">
 					© 2019 Copyright QualEdu
-					<a class="grey-text text-lighten-4 right" href="www.qual-edu.org">Qual-Edu</a>
+					<a class="text-white text-lighten-4 right" href="www.qual-edu.org">Qual-Edu</a>
 				</div>
 			</div>
 		</footer>
