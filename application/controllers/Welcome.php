@@ -72,12 +72,27 @@ class Welcome extends CI_Controller {
 		$desarrollador = $this->input->post('desarrollador');
 		$detalle = $this->input->post('detalle');
 		$solicitante = $this->input->post('solicitante');
-		$ruta_anexo = $this->input->post('ruta_anexo');
-		$fechaPeticion = date("Y-m-d H:i:s");  
+		$anexo = $this->input->post('ruta_anexo');
+		$idproyecto = $this->input->post('idproyecto');
+		$fechaPeticion = date("Y-m-d H:i:s"); 
+
+		$i = strlen($anexo);
+		for ($j=$i; $j > 1 ; $j--) { 
+			$extension = $anexo;
+			$extension = substr($extension,$j);
+			if (stristr($extension, '.')) {
+				$extension_archivo = $extension;
+				break;
+			}
+		} 
+
+		$fecha = date_create();
+		$idfecha = date_timestamp_get($fecha);
+
+		$ruta_anexo = 'anexos/anexo_ticket_'.$idfecha.$extension_archivo;
 		// Utilerias::imprimeConsola($ruta_anexo);
-		//$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, $idproyecto, $otro_proyecto, $fechaPeticion, $ruta_anexo);
 		$usuarios = $this->Ticket_model->get_usuarios();
-		$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, 1, '', $fechaPeticion, $ruta_anexo);
+		$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, $idproyecto, '', $fechaPeticion, $ruta_anexo);
 		//$this->get_tabla($_SESSION['acceso']);
 		$datos[0] = ['idusuario' => $solicitante];
 		$data['datos_usuario'] = $datos;

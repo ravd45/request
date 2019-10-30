@@ -4,12 +4,13 @@
  	detalle = $('#ticket').val();
  	solicitante = $('#idusuario').val();
     ruta_anexo = $('#ruta_anexo').val();
+    idproyecto = $('#proyecto option:selected').val();
  	ruta = base_url + 'Welcome/set_tabla';
  	$.ajax({
  		url: ruta,
  		type: 'POST',
  		dataType: 'json',
- 		data: {detalle:detalle, desarrollador:desarrollador, solicitante:solicitante, ruta_anexo:ruta_anexo},
+ 		data: {detalle:detalle, desarrollador:desarrollador, solicitante:solicitante, ruta_anexo:ruta_anexo, idproyecto:idproyecto},
  	})
  	.done(function(data) {
  		$('#index_div').html(data.str_view);
