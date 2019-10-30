@@ -1,25 +1,26 @@
  $('#btn_enviar').click(function() {
- 
-    desarrollador = $('#desarrollador option:selected').val();
-    detalle = $('#ticket').val();
-    solicitante = $('#idusuario').val();
-    ruta = base_url + 'Welcome/set_tabla';
-    $.ajax({
-        url: ruta,
-        type: 'POST',
-        dataType: 'json',
-        data: {detalle:detalle, desarrollador:desarrollador, solicitante:solicitante},
-    })
-    .done(function(data) {
-        $('#index_div').html(data.str_view);
-    })
-    .fail(function() {
-        console.log("error");
-    })
-    .always(function() {
-        console.log("complete");
-    });
-    
+
+ 	desarrollador = $('#desarrollador option:selected').val();
+ 	detalle = $('#ticket').val();
+ 	solicitante = $('#idusuario').val();
+    ruta_anexo = $('#ruta_anexo').val();
+ 	ruta = base_url + 'Welcome/set_tabla';
+ 	$.ajax({
+ 		url: ruta,
+ 		type: 'POST',
+ 		dataType: 'json',
+ 		data: {detalle:detalle, desarrollador:desarrollador, solicitante:solicitante, ruta_anexo:ruta_anexo},
+ 	})
+ 	.done(function(data) {
+ 		$('#index_div').html(data.str_view);
+ 	})
+ 	.fail(function() {
+ 		console.log("error");
+ 	})
+ 	.always(function() {
+ 		console.log("complete");
+ 	});
+
  });
 
  $('#desarrollador').change(function() {
@@ -45,7 +46,26 @@
  });
 
  $('#btn_cerrar').click(function() {
- 	location.reload();
+
+ 	ruta = base_url + 'Welcome/login';
+ 	$.ajax({
+ 		url: ruta,
+ 		type: 'POST',
+ 		dataType: 'json',
+ 		data: {x:'x'},
+
+ 	})
+ 	.done(function(data) {
+ 		location.reload();
+
+ 	})
+ 	.fail(function() {
+ 		console.log("error");
+ 	})
+ 	.always(function() {	
+ 	});
+
+ 	
  });
 
  function detalles(idticket) {
@@ -53,16 +73,13 @@
  	$.ajax({
  		url: ruta,
  		type: 'POST',
-        dataType: 'json',
+ 		dataType: 'json',
  		data: {idticket: idticket},
- 		 // beforeSend: function(xhr) {
-    //             Notification.loading("");
-    //         },
  	})
  	.done(function(data) {
  		$('#detalles_div').html(data.str_view);
  		$('#idticketInput').val(idticket);
-        $('#detalles_modal').modal('show');
+ 		$('#detalles_modal').modal('show');
  	})
  	.fail(function() {
  		console.log("error");

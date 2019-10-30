@@ -8,7 +8,7 @@ class Login_Model extends CI_Model
 
   public function iniciar_sesion($usuario, $pass)
   {
-  	$str_query = "SELECT u.* from seguridad s
+  	$str_query = "SELECT u.*, s.tipo_usuario from seguridad s
 		 INNER JOIN usuario u ON u.idusuario = s.idusuario
   	 WHERE s.usuario = '{$usuario}' and s.password = md5('{$pass}'); ";
 

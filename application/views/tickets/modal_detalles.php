@@ -21,13 +21,13 @@
                             <td>
                                 <?php switch ($value['estado']) {
                                     case '0': ?>
-                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn btn-sm btn-secondary bg-white" title="Actualizar estado" onclick="cambiarestado(1)"><?php } ?><i class="material-icons text-danger">star_border</i></a>
+                                    <?php if($_SESSION['nombre'] == $value['nombre'] || $_SESSION['tipo_usuario'] == 1 || $_SESSION['tipo_usuario'] == 2){ ?><a class="btn btn-sm btn-secondary bg-white" title="Actualizar estado" onclick="cambiarestado(1)"><?php } ?><i class="material-icons text-danger">star_border</i></a>
                                     <?php break;
                                     case '1': ?>
-                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn btn-sm btn-secondary bg-white" title="Actualizar estado" onclick="cambiarestado(2)"><?php } ?><i class="material-icons text-warning">star_half</i></a>
+                                    <?php if($_SESSION['nombre'] == $value['nombre'] || $_SESSION['tipo_usuario'] == 1 || $_SESSION['tipo_usuario'] == 2){ ?><a class="btn btn-sm btn-secondary bg-white" title="Actualizar estado" onclick="cambiarestado(2)"><?php } ?><i class="material-icons text-warning">star_half</i></a>
                                     <?php break;
                                     case '2': ?>
-                                    <?php if($value['idusuario']==$_SESSION['id'] || $value['tipo_usuario'] == 1 || $value['tipo_usuario'] == 2){ ?><a class="btn btn-sm btn-secondary bg-white" title="Actualizar estado" onclick="cambiarestado(0)"><?php } ?><i class="material-icons text-success">star</i></a>
+                                    <?php if($_SESSION['tipo_usuario'] == 1 || $_SESSION['tipo_usuario'] == 2){ ?><a class="btn btn-sm btn-secondary bg-white" title="Actualizar estado" onclick="cambiarestado(0)"><?php } ?><i class="material-icons text-success">star</i></a>
                                     <?php break;
                                 } ?>
                             </td>

@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="UTF-8">
 	<title>Tickets</title>
 	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
+	<link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src="<?= base_url('assets/js/messages.js') ?>"></script>
 </head>

@@ -38,6 +38,7 @@ class Ticket_model extends CI_Model
   public function set_tabla($solicitante, $detalle, $desarrollador, $idproyecto, $otro_proyecto, $fechaPeticion, $ruta_anexo)
   {
   	$str_query = "call proye7nb_tickets.set_tabla({$solicitante}, '{$detalle}', {$desarrollador},  {$idproyecto}, '{$otro_proyecto}', '{$fechaPeticion}', '{$ruta_anexo}')";
+  	// print_r($str_query); die();
   	return $this->db->query($str_query)->result_array();
   }// set_tabla()
 

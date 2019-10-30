@@ -19,21 +19,32 @@ class Welcome extends CI_Controller {
 
 	public function login()
 	{
-		$usuario = $this->input->post('usuario');
-		$pass = $this->input->post('pass');
-
-		$acceso = $this->Login_Model->iniciar_sesion($usuario, $pass);
-		if (empty($acceso)) {
+			// Utilerias::imprimeConsola($_POST['x']);
+		if (isset($_POST['x'])) {
+			$_SESSION['nombre'] = '';
 			$msj = 'Datos incorrectos';
 			$response = array('datos' => $msj);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}else{
-			$_SESSION['acceso'] = $acceso;
-			$this->get_tabla($acceso);
+
+			$usuario = $this->input->post('usuario');
+			$pass = $this->input->post('pass');
+
+			$acceso = $this->Login_Model->iniciar_sesion($usuario, $pass);
+			if (empty($acceso)) {
+				$msj = 'Datos incorrectos';
+				$response = array('datos' => $msj);
+				Utilerias::enviaDataJson(200, $response, $this);
+				exit;
+			}else{
+				$_SESSION['nombre'] =  $acceso[0]['nombre'].' '. $acceso[0]['paterno'].' '. $acceso[0]['materno'];
+				$_SESSION['acceso'] = $acceso;
+			// Utilerias::imprimeConsola($_SESSION['nombre']);
+				$this->get_tabla($acceso);
+			}
 		}
-		// Utilerias::imprimeConsola($tabla);
-		
+
 	}//login
 
 	public function get_tabla($acceso)
@@ -42,6 +53,7 @@ class Welcome extends CI_Controller {
 		$usuarios = $this->Ticket_model->get_usuarios();
 		$_SESSION['id'] = $acceso[0]['idusuario'];
 		$_SESSION['nombre'] =  $acceso[0]['nombre'].' '. $acceso[0]['paterno'].' '. $acceso[0]['materno'];
+		$_SESSION['tipo_usuario'] =  $acceso[0]['tipo_usuario'];
 		$tabla = $this->Ticket_model->get_tickets(0);
 		$msj = '';
 		$data['datos_usuario'] = $acceso;
@@ -60,13 +72,13 @@ class Welcome extends CI_Controller {
 		$desarrollador = $this->input->post('desarrollador');
 		$detalle = $this->input->post('detalle');
 		$solicitante = $this->input->post('solicitante');
-		$ruta_anexo = 'nada aún jejeje';
+		$ruta_anexo = $this->input->post('ruta_anexo');
 		$fechaPeticion = date("Y-m-d H:i:s");  
+		// Utilerias::imprimeConsola($ruta_anexo);
 		//$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, $idproyecto, $otro_proyecto, $fechaPeticion, $ruta_anexo);
 		$usuarios = $this->Ticket_model->get_usuarios();
 		$llenaTabla = $this->Ticket_model->set_tabla($solicitante, $detalle, $desarrollador, 1, '', $fechaPeticion, $ruta_anexo);
 		//$this->get_tabla($_SESSION['acceso']);
-		// Utilerias::imprimeConsola($llenaTabla);
 		$datos[0] = ['idusuario' => $solicitante];
 		$data['datos_usuario'] = $datos;
 		$data['usuarios'] = $usuarios;
