@@ -75,11 +75,14 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-'hostname' => '208.91.198.53',
-'username' => 'proye7nb_tickets',
-'password' => 'tL_0mxXAL}=(',
-'database' => 'proye7nb_tickets',
-
+// 'hostname' => '208.91.198.53',
+// 'username' => 'proye7nb_tickets',
+// 'password' => 'tL_0mxXAL}=(',
+// 'database' => 'proye7nb_tickets',
+'hostname' => '127.0.0.1',
+'username' => 'root',
+'password' => '',
+'database' => 'request',
 'dbport'   => '3306',
 
 'dbdriver' => 'mysqli',
